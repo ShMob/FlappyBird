@@ -11,7 +11,7 @@ public class UiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Screen.SetResolution(500, 800, FullScreenMode.FullScreenWindow);
     }
 
     // Update is called once per frame
