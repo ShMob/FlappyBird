@@ -8,12 +8,16 @@ public class PipeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveAmount = FindObjectOfType<BirdController>().verticalMoveAmount;
+        moveAmount = FindObjectOfType<BirdController>().horizontalMoveAmount;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         transform.position = new Vector3(transform.position.x - moveAmount, transform.position.y, transform.position.z);
+        if(transform.position.x < -10)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

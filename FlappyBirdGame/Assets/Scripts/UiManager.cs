@@ -20,9 +20,9 @@ public class UiManager : MonoBehaviour
         
     }
 
-    public void IncreaseScore(int amount)
+    public void IncreaseScore()
     {
-        score += amount;
+        score++;
         scoreText.text = score.ToString();
     }
 
@@ -31,5 +31,8 @@ public class UiManager : MonoBehaviour
         losePanel.SetActive(true);
         scoreText.text = "";
         loseScoreText.text = score.ToString();
+        Time.timeScale = 0;
+        FindObjectOfType<PipePlacer>().enabled = false;
+        FindObjectOfType<BirdController>().enabled = false;
     }
 }

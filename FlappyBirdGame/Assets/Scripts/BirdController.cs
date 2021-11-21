@@ -6,11 +6,14 @@ public class BirdController : MonoBehaviour
 {
     public float jumpAmount;
     Rigidbody2D rb;
-    public float verticalMoveAmount;
+    public float horizontalMoveAmount;
+    private UiManager uiManager;
+    private float velocity;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        uiManager = FindObjectOfType<UiManager>();
     }
 
     // Update is called once per frame
@@ -20,11 +23,17 @@ public class BirdController : MonoBehaviour
         {
             rb.AddForce(new Vector2(0, jumpAmount), ForceMode2D.Impulse);
         }
-        
+        //transform.position = new Vector3(transform.position.x, transform.position.y + velocity, 0);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        FindObjectOfType<UiManager>().Lose();
+        uiManager.Lose();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        uiManager.IncreaseScore();
+        
     }
 }
